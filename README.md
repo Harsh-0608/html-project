@@ -1,7 +1,7 @@
 # ♻️ ZeroWaste – Geo-Intelligent Food Donation & Rescue System
 
 ## 📌 Selected Domain:
-**Social Good / Waste Management / Food Distribution**
+**Web Development**
 
 ---
 
@@ -82,4 +82,5 @@ This project includes the following:
   - Success response
 
 ---
+
 
