@@ -1,58 +1,85 @@
-# html-project
-ZERO  FOOD WASTE UI
-# ZeroWaste – HTML Project
+# ♻️ ZeroWaste – Geo-Intelligent Food Donation & Rescue System
 
-## 🌐 Selected Domain
-**Web Development / Waste Management / Social Impact**
+## 📌 Selected Domain:
+**Social Good / Waste Management / Food Distribution**
 
 ---
 
-## ❓ Problem Statement
-Every day, large amounts of edible food go to waste. Many people in need cannot access this surplus food. The aim of this project is to provide a simple and effective web interface to help connect food donors with receivers through a clean, responsive design.
+## ❗ Problem Statement
 
----
-
-## 🧩 Use Case
-- **Donors**: Restaurants, individuals, or businesses with excess food.
-- **Receivers**: NGOs, shelters, or individuals in need.
-- **Admins**: To manage donor and receiver data.
+Every day, millions of tons of edible food are wasted, while millions of people remain hungry. A major barrier to effective food rescue is the lack of a simple, accessible, real-time system for connecting food donors (like individuals, restaurants, and stores) with receivers (such as shelters, NGOs, and individuals in need).
 
 ---
 
 ## 📝 Problem Description
-Despite having surplus food, there is no easy way to distribute it before it perishes. Our frontend provides an intuitive UI to allow donors to post available food and receivers to quickly claim it based on location and quantity.
+
+The current food donation processes are often manual, disorganized, or restricted to large institutions. There's a need for a **lightweight, location-based web platform** where:
+
+- Donors can quickly post food availability.
+- Receivers can request food without long procedures.
+- Both parties can coordinate pickups based on **geolocation**.
+- The process should be **mobile-friendly**, require **minimal setup**, and show **submission success instantly**.
+
+---
+
+## 💡 Project Objective
+
+The **ZeroWaste** project aims to build a clean, fast, and geolocation-powered platform that:
+
+- Encourages **easy food donation** from individuals or organizations.
+- Helps **receivers locate nearby donations** in real time.
+- Enables location tracking using **HTML + JavaScript Geolocation API**.
+- Displays **success feedback** after every form submission for clarity.
+- Provides a structured foundation for future enhancements like admin panels and food distribution maps.
 
 ---
 
 ## 🛠️ Tech Stack Used
 
-### Frontend:
-- **HTML5**
-- **CSS3**
-- **JavaScript (optional)**
+### 🧩 Frontend
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Geolocation API
+- Google Fonts (Roboto, Poppins)
 
-### Backend (if applicable):
-- **Node.js**
-- **Express.js**
-
-### Tools:
-- **VS Code**
-- **Git & GitHub**
-- **Live Server Extension**
+### ⚙️ Backend
+- Python 3.x
+- Flask (Micro web framework)
+- Flask-CORS (to enable frontend-backend communication)
 
 ---
 
-## 💡 Project Features
-- Clean, responsive UI layout.
-- Donor & receiver forms with validation.
-- Auto-location detection (optional).
-- Premium card and sidebar design using custom CSS.
+## 💻 Project Explanation
+
+This project includes the following:
+
+### ➤ `index.html`
+- A landing page with navigation to all other panels.
+
+### ➤ `donor.html`
+- A form for donors to enter:
+  - Food details (type, quantity, deadline)
+  - Perishability status
+  - Upload food image
+  - Auto-detect current location
+- On submission, it redirects to `success.html`.
+
+### ➤ `receiver.html`
+- A form for receivers to enter:
+  - Name, email, food preference, quantity
+  - Auto-detect or manually enter location
+  - Optional document upload
+- On submission, it redirects to `success.html`.
+
+### ➤ `success.html`
+- Displays a clean success message: “Your request was submitted successfully!”
+
+### ➤ `donor_api.py`
+- Python Flask API to handle:
+  - Donor form (`/submit-donor`)
+  - Receiver form (`/submit-receiver`)
+  - Success response
 
 ---
-
-## 🚀 How to Run This Project
-
-1. **Clone the repo**:
-   ```bash
-   git clone https://github.com/your-username/html-project.git
 
