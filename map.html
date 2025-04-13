@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map – ZeroWaste</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h1>ZeroWaste</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="donor.html">🍱 Donor Panel</a>
+      <a href="receiver.html">🤝 Receiver Panel</a>
+      <a href="map.html">🗺️ Map</a>
+      <a href="admin.html">🛠️ Admin</a>
+    </nav>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map and set the view
+    var map = L.map('map').setView([51.505, -0.09], 13); // Default view (London coordinates)
+
+    // Add the OpenStreetMap tiles to the map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Function to get the user's geolocation and add a marker
+    function getUserLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          // Set the map view to the user's location and add a marker
+          map.setView([lat, lon], 14);
+          L.marker([lat, lon]).addTo(map)
+            .bindPopup("<b>Your Location</b><br>Lat: " + lat + "<br>Lon: " + lon)
+            .openPopup();
+        });
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+
+    // Call the function to get the user's location
+    getUserLocation();
+
+    // Example donation data (could be replaced with dynamic data from your backend)
+    const donations = [
+      {
+        title: 'Fresh Rice & Dal',
+        description: '10 plates available for pickup.',
+        lat: 51.505,
+        lon: -0.09
+      },
+      {
+        title: 'Vegetarian Pizza',
+        description: '5 pizzas available for pickup.',
+        lat: 51.515,
+        lon: -0.1
+      },
+      {
+        title: 'Fruit Basket',
+        description: '10 baskets of fresh fruits.',
+        lat: 51.485,
+        lon: -0.08
+      }
+    ];
+
+    // Loop through donation data and place markers on the map
+    donations.forEach(function(donation) {
+      L.marker([donation.lat, donation.lon]).addTo(map)
+        .bindPopup("<b>" + donation.title + "</b><br>" + donation.description);
+    });
+
+  </script>
+</body>
+</html>

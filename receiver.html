@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Receiver Panel – ZeroWaste</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- Poppins font -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafb; /* Soft background color */
+      color: #333;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #2b3a47;
+      color: white;
+      padding: 20px;
+      position: fixed;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .sidebar nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+      margin-bottom: 15px;
+      display: block;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .sidebar nav a:hover {
+      background-color: #3b4a59;
+    }
+
+    .content {
+      margin-left: 240px;
+      padding: 40px;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .form {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .form label {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: block;
+      color: #374151;
+    }
+
+    .form input, .form select, .form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      background-color: #fafafa;
+    }
+
+    .form input[type="file"] {
+      padding: 8px;
+    }
+
+    .form button[type="submit"], .location-btn {
+      margin-top: 20px;
+      background-color: #3b82f6;
+      color: white;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .form button[type="submit"]:hover, .location-btn:hover {
+      background-color: #2563eb;
+    }
+
+    .location-btn {
+      margin-top: 10px;
+      background-color: #f59e0b;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .location-btn:hover {
+      background-color: #d97706;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: relative;
+      }
+      .content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h1>ZeroWaste</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="donor.html">🍱 Donor Panel</a>
+      <a href="receiver.html">🤝 Receiver Panel</a>
+      <a href="map.html">🗺️ Map</a>
+      <a href="admin.html">🛠️ Admin</a>
+    </nav>
+  </div>
+
+  <main class="content">
+    <h2>Request Food Pickup</h2>
+    <form class="form">
+      <label>Your Name:</label>
+      <input type="text" placeholder="Your name" required>
+
+      <label>Email:</label>
+      <input type="email" placeholder="Your email" required>
+
+      <label>Food Type:</label>
+      <select>
+        <option value="veg">Vegetarian</option>
+        <option value="non-veg">Non-Vegetarian</option>
+      </select>
+
+      <label>Location:</label>
+      <input type="text" id="receiver-location" placeholder="Auto-detected or enter manually">
+      <button type="button" class="location-btn" onclick="detectLocation('receiver-location')">Detect My Location</button>
+
+      <label>Preferred Pickup Distance (km):</label>
+      <input type="number" placeholder="e.g. 10" min="1">
+
+      <label>Preferred Pickup Time:</label>
+      <input type="datetime-local">
+
+      <button type="submit">Request Pickup</button>
+    </form>
+  </main>
+
+  <script>
+    function detectLocation(id) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          document.getElementById(id).value = `Lat: ${lat}, Lon: ${lon}`;
+        });
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+  </script>
+</body>
+</html>
